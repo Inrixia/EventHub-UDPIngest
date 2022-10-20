@@ -1,0 +1,33 @@
+{
+	"name": "eventhub-udpingest",
+	"main": "./dist/ingest.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Inrixia/EventHub-UDPIngest.git"
+	},
+	"author": "Inrixia",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Inrixia/EventHub-UDPIngest/issues"
+	},
+	"homepage": "https://github.com/Inrixia/EventHub-UDPIngest#readme",
+	"devDependencies": {
+		"@types/node": "^18.11.2",
+		"@typescript-eslint/eslint-plugin": "^5.40.1",
+		"esbuild": "^0.15.12",
+		"eslint": "^8.25.0",
+		"pkg": "^5.8.0"
+	},
+	"type": "module",
+	"scripts": {
+		"prestart": "tsc",
+		"start": "node ./dist/ingest.js",
+		"build": "esbuild ./src/ingest.ts --bundle --platform=node --outfile=dist/ingest.cjs && pkg ./dist/ingest.cjs --out-path=./build -t latest-linux,latest-mac,latest-win --compress GZip"
+	},
+	"dependencies": {
+		"@azure/event-hubs": "^5.8.0",
+		"@inrixia/helpers": "^2.0.7",
+		"dgram": "^1.0.1",
+		"dotenv": "^16.0.3"
+	}
+}
